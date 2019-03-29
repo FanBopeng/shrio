@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.shrio.mapper.UserMapper">
+
+    <resultMap id="userMap" type="com.shrio.modle.User">
+        <id property="uid" column="id"></id>
+        <result property="username" column="username"></result>
+        <result property="password" column="password"></result>
+        <collection property="roles" ofType="com.shrio.modle.Role">
+            <id property="rid" column="rid"></id>
+            <result property="rname" column="rname"/>
+            <collection property="permissions" ofType="com.shrio.modle.Permission">
+                <id property="pid" column="pid"></id>
+                <result property="name" column="name"></result>
+                <result property="url" column="url"></result>
+
+            </collection>
+
+        </collection>
+
+    </resultMap>
+    
+    <select id="findUserByName"  parameterType="string" resultMap="userMap"></select>
+    
+
+
+
+
+
+</mapper>
